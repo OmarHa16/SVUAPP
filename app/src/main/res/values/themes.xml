@@ -1,0 +1,11 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.OurMeetingApp" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your light theme here. -->
+        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="colorPrimary">@color/lav</item>
+        <item name="colorPrimaryVariant">@color/lav</item>
+    </style>
+
+    <style name="Theme.OurMeetingApp" parent="Base.Theme.OurMeetingApp" />
+</resources>
