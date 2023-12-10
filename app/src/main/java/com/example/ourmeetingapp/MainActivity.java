@@ -17,6 +17,7 @@ import com.google.android.material.navigation.NavigationView;
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private DrawerLayout drawerLayout;
     private String x = "soso";
+    DataBase db;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,6 +36,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             getSupportFragmentManager().beginTransaction().replace(R.id.f_containor, new mainMeetingsfragment()).commit();
             navigationView.setCheckedItem(R.id.nav_mainmeetings);
         }
+        db=new DataBase(this);
     }
     //ignore red lines errors
 
