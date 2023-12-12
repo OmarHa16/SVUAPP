@@ -22,6 +22,7 @@ public class DataBase extends SQLiteOpenHelper {
     private static final String  Table_name3 = "Date";
     private static final String AppointmentID = "AppointementID";
     private static final String Appointment = "Appointment";
+    private static final String PastDate="PastDate";
 
     public DataBase(@Nullable Context context) {
         super(context, DataBase_name, null, Version);
@@ -44,7 +45,7 @@ public class DataBase extends SQLiteOpenHelper {
 
         String query2 = "CREATE TABLE " + Table_name3 +
                 "(" + AppointmentID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                Appointment + " DATE ," + PlaceID + " INTEGER," + PersonID + " INTEGER ,"+
+                Appointment + " DATE ," +PastDate+ " DATE  ," + PlaceID + " INTEGER," + PersonID + " INTEGER ,"+
                 "FOREIGN KEY (" + PlaceID + ") REFERENCES " + Table_name2 + "(" + PlaceID + "),"+
                 "FOREIGN KEY (" + PersonID + ") REFERENCES " + Table_name1 + "(" + PersonID + "));";
         db.execSQL(query2);
