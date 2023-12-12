@@ -2,63 +2,51 @@ package com.example.ourmeetingapp;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link outlinemeetings#newInstance} factory method to
- * create an instance of this fragment.
- */
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
+
 public class outlinemeetings extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public outlinemeetings() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment outlinemeetings.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static outlinemeetings newInstance(String param1, String param2) {
-        outlinemeetings fragment = new outlinemeetings();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
+    RecyclerView recycler;
+    List<meetings> meetingsList;
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_outlinemeetings, container, false);
+        View view = inflater.inflate(R.layout.fragment_mainmeetings, container, false);
+        recycler = view.findViewById(R.id.recyclerView);
+        initData();
+        setRecyclerView();
+
+        return view;
+    }
+
+    private void setRecyclerView() {
+        MeetingsAdapter meetingsAdapter = new MeetingsAdapter(meetingsList);
+        recycler.setAdapter(meetingsAdapter);
+        recycler.setHasFixedSize(true);
+    }
+
+    private void initData() {
+        meetingsList = new ArrayList<>();
+        meetingsList.add(new meetings("school", Calendar.getInstance().getTime(),"my study place","Ahmed","my teacher"));
+        meetingsList.add(new meetings("company", Calendar.getInstance().getTime(),"my work place","Hasan","my Boss"));
+        meetingsList.add(new meetings("majls", Calendar.getInstance().getTime(),"my prey place","Yousf","my Father"));
+        meetingsList.add(new meetings("office", Calendar.getInstance().getTime(),"my work office","Mohamed","my colleague"));
+        meetingsList.add(new meetings("resturant", Calendar.getInstance().getTime(),"beside my home","Abeer","my Love"));
+        meetingsList.add(new meetings("university", Calendar.getInstance().getTime(),"my study place","Omar","my Doctor"));
+        meetingsList.add(new meetings("coffee", Calendar.getInstance().getTime(),"near my place","Sawsan","my Friend"));
+        meetingsList.add(new meetings("park", Calendar.getInstance().getTime(),"in the middle of the city","Dana","my Friend"));
+
     }
 }
