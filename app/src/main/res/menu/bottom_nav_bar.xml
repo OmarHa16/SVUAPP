@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/todaysmeetings"
+        android:title="@string/today"
+        android:icon="@drawable/mainmeetings"/>
+    <item
+        android:id="@+id/forwordmeetings"
+        android:title="@string/forword"
+        android:icon="@drawable/forwordmeetings"/>
+    <item
+        android:id="@+id/outlinemeetings"
+        android:title="@string/outline"
+        android:icon="@drawable/outlinemeetings"/>
+</menu>
