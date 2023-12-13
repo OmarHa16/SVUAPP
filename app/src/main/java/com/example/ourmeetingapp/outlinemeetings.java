@@ -32,7 +32,7 @@ public class outlinemeetings extends Fragment {
     }
 
     private void setRecyclerView() {
-        MeetingsAdapter meetingsAdapter = new MeetingsAdapter(meetingsList);
+        MeetingsAdapter1 meetingsAdapter = new MeetingsAdapter1(meetingsList);
         recycler.setAdapter(meetingsAdapter);
         recycler.setHasFixedSize(true);
     }
