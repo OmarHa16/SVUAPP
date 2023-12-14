@@ -23,8 +23,8 @@ public class settingsfragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view= inflater.inflate(R.layout.fragment_settingsfragment, container, false);
 
-        super.onCreate(savedInstanceState);
-        getActivity().setContentView(R.layout.fragment_settingsfragment);
+
+
         mToolbar=(Toolbar)view.findViewById(R.id.toolbar_settings);
         mBlueColor=(Button)view. findViewById(R.id.blue_color);
         mGreenColor=(Button)view. findViewById(R.id.green_color);
