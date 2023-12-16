@@ -9,4 +9,6 @@
     <color name="colorViolet">#43198F</color>
     <color name="colorPink">#E91E63</color>
     <color name="colorBrown">#B85D40</color>
+    <color name="colorSettings">#92E8DCDC</color>
+    <color name="colorClick">#abcdef</color>
 </resources>

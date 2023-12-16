@@ -1,3 +1,4 @@
+include(":app","implementation 'com.github.mrudultora:Colorpicker:1.2.0'")
 pluginManagement {
     repositories {
         google()

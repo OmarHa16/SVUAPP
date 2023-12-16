@@ -7,5 +7,64 @@
         <item name="colorPrimaryVariant">@color/lav</item>
     </style>
 
+    <style name="AppThem_red" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your light theme here. -->
+        <item name="colorPrimary">@color/red_colorPrimary</item>
+        <item name="colorPrimaryDark">@color/red_colorPrimaryDark</item>
+        <item name="android:colorAccent">@color/red_colorAccent</item>
+    </style>
+
+    <style name="AppThem_pink" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your light theme here. -->
+        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="colorPrimary">@color/pink_colorPrimary</item>
+        <item name="colorPrimaryDark">@color/pink_colorPrimaryDark</item>
+        <item name="android:colorAccent">@color/pink_colorAccent</item>
+    </style>
+
+    <style name="AppThem_darpink" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your light theme here. -->
+        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="colorPrimary">@color/darpink_colorPrimary</item>
+        <item name="colorPrimaryDark">@color/darpink_colorPrimaryDark</item>
+        <item name="android:colorAccent">@color/darpink_colorAccent</item>
+    </style>
+
+    <style name="AppThem_violet" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your light theme here. -->
+        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="colorPrimary">@color/violet_colorPrimary</item>
+        <item name="colorPrimaryDark">@color/violet_colorPrimaryDark</item>
+        <item name="android:colorAccent">@color/violet_colorAccent</item>
+    </style>
+
+    <style name="AppThem_blue" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your light theme here. -->
+        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="colorPrimary">@color/blue_colorPrimary</item>
+        <item name="colorPrimaryDark">@color/blue_colorPrimaryDark</item>
+        <item name="android:colorAccent">@color/blue_colorAccent</item>
+    </style>
+
+    <color name="red_colorPrimary">#ff0000</color>
+    <color name="red_colorPrimaryDark">#Df0000</color>
+    <color name="red_colorAccent">#E7E72D</color>
+
+    <color name="pink_colorPrimary">#e91e63</color>
+    <color name="pink_colorPrimaryDark">#cb1755</color>
+    <color name="pink_colorAccent">#2095f2</color>
+
+    <color name="darpink_colorPrimary">#9b26af</color>
+    <color name="darpink_colorPrimaryDark">#7a1ea1</color>
+    <color name="darpink_colorAccent">#f34235</color>
+
+    <color name="violet_colorPrimary">#6639b6</color>
+    <color name="violet_colorPrimaryDark">#502ca7</color>
+    <color name="violet_colorAccent">#e81d62</color>
+
+    <color name="blue_colorPrimary">#3f51b5</color>
+    <color name="blue_colorPrimaryDark">#3445a2</color>
+    <color name="blue_colorAccent">#E81d62</color>
+
     <style name="Theme.OurMeetingApp" parent="Base.Theme.OurMeetingApp" />
 </resources>

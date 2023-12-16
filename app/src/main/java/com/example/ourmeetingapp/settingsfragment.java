@@ -1,84 +1,100 @@
 package com.example.ourmeetingapp;
 
-import static android.content.Context.MODE_PRIVATE;
-
+import android.annotation.TargetApi;
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Paint;
+import android.graphics.drawable.ShapeDrawable;
+import android.graphics.drawable.shapes.OvalShape;
+import android.os.Build;
 import android.os.Bundle;
+
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import androidx.appcompat.widget.Toolbar;
-import android.content.SharedPreferences;
 import android.widget.Button;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+
 import androidx.fragment.app.Fragment;
+
+
 public class settingsfragment extends Fragment {
-    Toolbar mToolbar;
-    Button mBlueColor;
-    Button mGreenColor;
-    Button mGreyColor;
-    Button mVioletColor;
-    Button mPinkColor;
-    Button mBrownColor;
+
+      SharedPreferences sharedPreferences;
+      SharedPreferences.Editor editor;
+      Button button;
+      Methods methods;
+
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view= inflater.inflate(R.layout.fragment_settingsfragment, container, false);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        View view= inflater.inflate(R.layout.fragment_infofragment, container, false);
+        // Inflate the layout for this fragment
+       setTheme(Constant.theme);
+        setContentView(R.layout.fragment_settingsfragment);
 
 
+        final Toolbar toolbar = (Toolbar) view.findViewById(R.id.toolbar_settings);
+        toolbar.setTitle("Settings");
+        toolbar.setBackgroundColor(Constant.color);
 
-        mToolbar=(Toolbar)view.findViewById(R.id.toolbar_settings);
-        mBlueColor=(Button)view. findViewById(R.id.blue_color);
-        mGreenColor=(Button)view. findViewById(R.id.green_color);
-        mGreyColor=(Button) view.findViewById(R.id.grey_color);
-        mVioletColor=(Button)view. findViewById(R.id.violet_color);
-        mPinkColor=(Button) view.findViewById(R.id.pink_color);
-        mBrownColor=(Button) view.findViewById(R.id.brown_color);
+        methods = new Methods();
+        button = (Button) view.findViewById(R.id.button);
+        sharedPreferences = getActivity().getSharedPreferences("settings", Context.MODE_PRIVATE);
+        editor = sharedPreferences.edit();
+        colorize();
 
-        if (getColor()!=getResources().getColor(R.color.lav)){
-            mToolbar.setBackgroundColor(getColor());
+        button.setOnClickListener(v -> {
+            ColorChooserDialog dialog = new ColorChooserDialog(settingsfragment.this);
+            dialog.setTitle("Select");
+            dialog.setColorListener(new ColorListener() {
+                @Override
+                public void OnColorClick(View v, int color) {
+                    colorize();
+                    Constant.color = color;
+
+                    methods.setColorTheme();
+                    editor.putInt("color", color);
+                    editor.putInt("theme",Constant.theme);
+                    editor.commit();
+
+                    Intent intent = new Intent(settingsfragment.this, MainActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(intent);
+                }
+            });
+
+            dialog.show();
+        });
+        return view;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        switch (item.getItemId()){
+            case android.R.id.home:
+                onBackPressed();
+                break;
         }
-
-        mBlueColor.setOnClickListener(v -> {
-            mToolbar.setBackgroundColor(getResources().getColor(R.color.colorBlue));
-        /* if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.LOLLIPOP){
-             getWindow(getResources().getColor(R.id.blue_color));
-         }*/
-            storeColor(getResources().getColor(R.color.colorBlue));
-        });
-        mGreenColor.setOnClickListener(v -> {
-            mToolbar.setBackgroundColor(getResources().getColor(R.color.colorGreen));
-            storeColor(getResources().getColor(R.color.colorGreen));
-        });
-        mGreyColor.setOnClickListener(v -> {
-            mToolbar.setBackgroundColor(getResources().getColor(R.color.colorGrey));
-            storeColor(getResources().getColor(R.color.colorGrey));
-        });
-        mVioletColor.setOnClickListener(v -> {
-            mToolbar.setBackgroundColor(getResources().getColor(R.color.colorViolet));
-            storeColor(getResources().getColor(R.color.colorViolet));
-        });
-        mPinkColor.setOnClickListener(v -> {
-            mToolbar.setBackgroundColor(getResources().getColor(R.color.colorPink));
-            storeColor(getResources().getColor(R.color.colorPink));
-        });
-        mBrownColor.setOnClickListener(v -> {
-            mToolbar.setBackgroundColor(getResources().getColor(R.color.colorBrown));
-            storeColor(getResources().getColor(R.color.colorBrown));
-        });
-
-      return  view ;
+        return super.onOptionsItemSelected(item);
     }
 
-    private void storeColor(int color){
-        SharedPreferences mSharedPreferencesre = getContext().getSharedPreferences("Toolbar",MODE_PRIVATE);
-        SharedPreferences.Editor mEditor=mSharedPreferencesre.edit();
-        mEditor.putInt("color",color);
-        mEditor.apply();
+
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
+    private void colorize(){
+        ShapeDrawable d = new ShapeDrawable(new OvalShape());
+        d.setBounds(58, 58, 58, 58);
+
+        d.getPaint().setStyle(Paint.Style.FILL);
+        d.getPaint().setColor(Constant.color);
+
+        button.setBackground(d);
     }
-    private int getColor(){
-        SharedPreferences mSharedPreferencesre = getContext().getSharedPreferences("Toolbar",MODE_PRIVATE);
-        int selectedColor= mSharedPreferencesre.getInt("color",getResources().getColor(R.color.lav));
-        return selectedColor;
-    }
+
 
 
 }
